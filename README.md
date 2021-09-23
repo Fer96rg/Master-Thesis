@@ -1,6 +1,4 @@
-# Master Thesis
-
-Master's Thesis
+# Master´s Thesis
 
 This file contains various implementation codes developed for the preparation of the Master's Thesis "Interaction of oblique shock waves with rigid walls in hypersonic regime". The codes are written in the M programming language of Matlab's numerical calculation software.
 
