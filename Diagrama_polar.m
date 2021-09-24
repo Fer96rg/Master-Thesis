@@ -29,57 +29,57 @@ plot(theta_1,p2_p1_1,'k');
 hold on;
 plot(-theta_1,p2_p1_1,'k');
 
-% plot(1,1);
-% axis([-45 45 1 max(p2_p1_1)]);
-% hold on;
-% 
+plot(1,1);
+axis([-45 45 1 max(p2_p1_1)]);
+hold on;
+
 % % Eje y (deflexión nula)
-% plot([0,0],[0,20],'--k');
-% hold on;
-% 
-% 
+plot([0,0],[0,20],'--k');
+hold on;
+
+
 % %Ahora para la onda reflejada
-% M2_i=M2(M1_i,beta_i_1,gamma); % Es un vector que tiene un valor asociado a cada beta_i_1 
-% M1_r=M2_i;
-% M1_r(M1_r<1)=NaN;
-% M=length(M1_r); % beta_i_1 y M1_r tienen el mismo tamaño
-% for j=1:M
-%     if isnan(M1_r(j))
-%         index=j-1;
-%         break
-%     end
-% end
-%     
-%     
+M2_i=M2(M1_i,beta_i_1,gamma); % Es un vector que tiene un valor asociado a cada beta_i_1 
+M1_r=M2_i;
+M1_r(M1_r<1)=NaN;
+M=length(M1_r); % beta_i_1 y M1_r tienen el mismo tamaño
+for j=1:M
+    if isnan(M1_r(j))
+        index=j-1;
+        break
+    end
+end
+    
+    
 % % Se calcula la matriz beta_i_2 (filas -> valores posibles de beta_i;
 % % columnas -> valores de Mi_r) y, a partir de ella, las matrices theta_2 y
 % % p2_p1_2.
-% 
+
 % % i -> beta_i
 % % j -> M1_r
-% 
-% beta_i_2=NaN(M);
-% for j=1:M
-%     rango=length(asind(1/M1_r(j)):1:90);
-%     beta_i_2(1:rango,j)=asind(1/M1_r(j)):1:90;
-%     if j<=index
-%         if beta_i_2(rango,j)<90
-%             beta_i_2(rango,j)=90;
-%         end
-%     end
-% end
-% theta_2=theta(M1_r,beta_i_2,gamma);
-% p2_p1_2=p2_p1(M1_r,beta_i_2,gamma);
-% 
-% %%
-% % Resultados: SE PONE EN COMENTARIO 1. ó 2.  
-% 
+
+beta_i_2=NaN(M);
+for j=1:M
+    rango=length(asind(1/M1_r(j)):1:90);
+    beta_i_2(1:rango,j)=asind(1/M1_r(j)):1:90;
+    if j<=index
+        if beta_i_2(rango,j)<90
+            beta_i_2(rango,j)=90;
+        end
+    end
+end
+theta_2=theta(M1_r,beta_i_2,gamma);
+p2_p1_2=p2_p1(M1_r,beta_i_2,gamma);
+
+%%
+% Resultados: SE PONE EN COMENTARIO 1. ó 2. (por defecto esta todo en comentario)
+ 
 % % 1. Te resuelve el diagrama polar para un beta_i_1 definido según m
 % % (índice del vector).
-% 
+
 % % 2. Te resuelve el diagrama polar para el que existe onda reflejada dado
 % % un M1_i, es decir, corta con la vertical theta=0.
-% 
+
 % % 1.Diagrama polar de la onda reflejada para cierto beta_i_1(m):
 % m=12; 
 % plot(theta_1(m)+theta_2(:,m),p2_p1_1(m)+p2_p1_2(:,m)-1,'g',theta_1(m)-theta_2(:,m),p2_p1_1(m)+p2_p1_2(:,m)-1,'g');
