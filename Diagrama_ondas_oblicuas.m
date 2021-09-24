@@ -53,7 +53,11 @@ grid on;
 xlabel(texlabel('theta [º]'));
 ylabel(texlabel('beta [º]'),'Rotation',0);
 
-% Curvas correspondientes a valores constantes de M1:
+% Curvas correspondientes a valores constantes de M1.
+% Representación gráfica de la curva formada por los puntos de ángulo de
+% deflexión máxima, theta máxima, correspondientes a cada valor de M1
+% (dibujada en rojo)
+
 text(1.40,71, '1.1');
 text(3.85,67, '1.2');
 text(6.7,65, '1.3');
@@ -73,9 +77,7 @@ text(32.5,85,'Onda fuerte, $M_{2}<1$','interpreter','latex');
 text(32.5,38,'Onda debil, $M_{2}>1$','interpreter','latex');
 text(30,62,'$M_2=1$','interpreter','latex','Color','red');
 
-% Representación gráfica de la curva formada por los puntos de ángulo de
-% deflexión máxima, theta máxima, correspondientes a cada valor de M1
-% (dibujada en rojo):
+
 
 
 
