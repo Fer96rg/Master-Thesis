@@ -34,47 +34,44 @@ M1_i=M1n_i./sind(beta_i);
 theta=atand((R_i-1)./(tand(beta_i)+R_i./tand(beta_i)));
 M2_i=M2n_i./sind(beta_i-theta);
 
-% %Onda reflejada
-% % syms x beta_r alpha_3
-% c2_c1=M1n_i./(R_i.*M2n_i);
-% 
-% syms alpha_3 beta_r
-% 
-% % R_r=((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r)));
-% % T_r=((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-R_r.^-1))./(R_r.*(1+alpha_3)));
-% % fun(1)=@(alpha_3,beta_r) alpha_3.^2./(1-alpha_3)-B_r.*exp(-theta_d./(T_i.*T_r)).*sqrt(T_i.*T_r)./(R_i.*R_r).*(1-exp(-theta_v./(T_i.*T_r)));
-% % fun(2)=@(alpha_3,beta_r) T_r-((1+alpha_2).*(1-R_r.^-1)+alpha_2+5+(2.*theta_v.*(1-alpha_2))./(T_i.*(exp(theta_v./T_i)-1))-2.*theta_d.*(alpha_3-alpha_2)./T_i)./((1+alpha_3).*(1+R_r)+alpha_3+5+(2.*theta_v.*(1-alpha_3))./(T_i.*T_r.*(exp(theta_v./(T_i.*T_r))-1)));
-% % 
-% % R_r=((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)));
-% % T_r=((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-R_r^-1))/(R_r*(1+alpha_3)));
-% % fun(1)=@(alpha_3,beta_r) alpha_3^2/(1-alpha_3)-B_r*exp(-theta_d/(T_i*T_r))*sqrt(T_i*T_r)/(R_i*R_r)*(1-exp(-theta_v/(T_i*T_r)));
-% % fun(2)=@(alpha_3,beta_r) T_r-((1+alpha_2)*(1-R_r^-1)+alpha_2+5+(2*theta_v*(1-alpha_2))/(T_i*(exp(theta_v/T_i)-1))-2*theta_d*(alpha_3-alpha_2)/T_i)/((1+alpha_3)*(1+R_r)+alpha_3+5+(2*theta_v*(1-alpha_3))/(T_i*T_r*(exp(theta_v/(T_i*T_r))-1)));
-% 
-% 
+% Onda reflejada
+syms x beta_r alpha_3
+c2_c1=M1n_i./(R_i.*M2n_i);
+
+syms alpha_3 beta_r
+
+% Cálculo de los parámetros adimensionales por dos formas (en comentarios la segunda)
+
+R_r=((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r)));
+T_r=((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-R_r.^-1))./(R_r.*(1+alpha_3)));
+fun(1)=@(alpha_3,beta_r) alpha_3.^2./(1-alpha_3)-B_r.*exp(-theta_d./(T_i.*T_r)).*sqrt(T_i.*T_r)./(R_i.*R_r).*(1-exp(-theta_v./(T_i.*T_r)));
+fun(2)=@(alpha_3,beta_r) T_r-((1+alpha_2).*(1-R_r.^-1)+alpha_2+5+(2.*theta_v.*(1-alpha_2))./(T_i.*(exp(theta_v./T_i)-1))-2.*theta_d.*(alpha_3-alpha_2)./T_i)./((1+alpha_3).*(1+R_r)+alpha_3+5+(2.*theta_v.*(1-alpha_3))./(T_i.*T_r.*(exp(theta_v./(T_i.*T_r))-1)));
+
+% R_r=((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)));
+% T_r=((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-R_r^-1))/(R_r*(1+alpha_3)));
+% fun(1)=@(alpha_3,beta_r) alpha_3^2/(1-alpha_3)-B_r*exp(-theta_d/(T_i*T_r))*sqrt(T_i*T_r)/(R_i*R_r)*(1-exp(-theta_v/(T_i*T_r)));
+% fun(2)=@(alpha_3,beta_r) T_r-((1+alpha_2)*(1-R_r^-1)+alpha_2+5+(2*theta_v*(1-alpha_2))/(T_i*(exp(theta_v/T_i)-1))-2*theta_d*(alpha_3-alpha_2)/T_i)/((1+alpha_3)*(1+R_r)+alpha_3+5+(2*theta_v*(1-alpha_3))/(T_i*T_r*(exp(theta_v/(T_i*T_r))-1)));
+
 % % Sustituyo R_r en T_r 
-% % T_r=((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3)));
-% 
-% % T_r=((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3)));
-% 
+T_r=((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3)));
+
+% T_r=((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3)));
+
 % % Sustituyo R_r y T_r en fun1 y fun2
-% % fun1=@(alpha_3,beta_r) alpha_3.^2./(1-alpha_3)-B_r.*exp(-theta_d./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))))).*sqrt(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))))./(R_i.*((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r)))).*(1-exp(-theta_v./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))))));
-% % fun2=@(alpha_3,beta_r) ((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3)))-((1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1)+alpha_2+5+(2.*theta_v.*(1-alpha_2))./(T_i.*(exp(theta_v./T_i)-1))-2.*theta_d.*(alpha_3-alpha_2)./T_i)./((1+alpha_3).*(1+((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))))+alpha_3+5+(2.*theta_v.*(1-alpha_3))./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))).*(exp(theta_v./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3)))))-1)));
+fun1=@(alpha_3,beta_r) alpha_3.^2./(1-alpha_3)-B_r.*exp(-theta_d./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))))).*sqrt(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))))./(R_i.*((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r)))).*(1-exp(-theta_v./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))))));
+fun2=@(alpha_3,beta_r) ((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3)))-((1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1)+alpha_2+5+(2.*theta_v.*(1-alpha_2))./(T_i.*(exp(theta_v./T_i)-1))-2.*theta_d.*(alpha_3-alpha_2)./T_i)./((1+alpha_3).*(1+((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))))+alpha_3+5+(2.*theta_v.*(1-alpha_3))./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3))).*(exp(theta_v./(T_i.*((1+alpha_2+M2_i.^2.*(sind(beta_r)).^2.*7.*R_i./(5.*P_i).*c2_c1.^2.*(1+alpha_2).*(1-((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).^-1))./(((tand(theta).*tand(beta_r)+1)./(1-tand(theta)./tand(beta_r))).*(1+alpha_3)))))-1)));
 % 
 % fun1=@(alpha_3,beta_r) alpha_3^2/(1-alpha_3)-B_r*exp(-theta_d/(T_i*((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3)))))*sqrt(T_i*((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3))))/(R_i*((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r))))*(1-exp(-theta_v/(T_i*((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3))))));
 % fun2=@(alpha_3,beta_r) ((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3)))-((1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1)+alpha_2+5+(2*theta_v*(1-alpha_2))/(T_i*(exp(theta_v/T_i)-1))-2*theta_d*(alpha_3-alpha_2)/T_i)/((1+alpha_3)*(1+((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r))))+alpha_3+5+(2*theta_v*(1-alpha_3))/(T_i*((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3)))*(exp(theta_v/(T_i*((1+alpha_2+M2_i^2*(sind(beta_r))^2*7*R_i/(5*P_i)*c2_c1^2*(1+alpha_2)*(1-((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))^-1))/(((tand(theta)*tand(beta_r)+1)/(1-tand(theta)/tand(beta_r)))*(1+alpha_3)))))-1)));
 % 
 % % Supón que conoces Beta_r, y usas una ecuación para calcular Tr.
 % % Usas la otra ecuación que no has usado para obtener un nuevo Beta_r.
-% 
-% beta_r_inicial=30.34;
-% alpha_3_sol=vpasolve(fun1(alpha_3,beta_r_inicial),alpha_3,alpha_2);
-% beta_r_sol=vpasolve(fun2(alpha_3_sol,beta_r),beta_r,beta_r_inicial);
-% 
 
+beta_r_inicial=30.34;
+alpha_3_sol=vpasolve(fun1(alpha_3,beta_r_inicial),alpha_3,alpha_2);
+beta_r_sol=vpasolve(fun2(alpha_3_sol,beta_r),beta_r,beta_r_inicial);
 
-
-
-
+%Método alternativo de resolución (por defecto en comentarios)
 %x(1)=alpha_3
 %x(2)=beta_r
 % 
